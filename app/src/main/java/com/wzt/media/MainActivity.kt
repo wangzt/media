@@ -1,28 +1,65 @@
 package com.wzt.media
 
-import android.opengl.GLSurfaceView
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
 
-    private var glSurfaceView: GLSurfaceView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        glSurfaceView = findViewById<GLSurfaceView>(R.id.main_surface_view)
 
-        glSurfaceView?.setRenderer(OpenGLRenderer())
+        val recyclerView = findViewById<RecyclerView>(R.id.main_recyclerview)
+        val adapter = MainAdapter(loadItemBeans())
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
     }
 
-    override fun onResume() {
-        super.onResume()
-        glSurfaceView?.onResume()
+    private fun loadItemBeans():List<ItemBean> {
+        val itemBeans = mutableListOf<ItemBean>()
+        itemBeans.add(ItemBean("AirHockey", "com.wzt.media.activity.AirHockeyActivity"))
+        return itemBeans
     }
 
-    override fun onPause() {
-        super.onPause()
-        glSurfaceView?.onPause()
+    inner class MainAdapter(val list: List<ItemBean>): RecyclerView.Adapter<MainViewHolder>() {
+
+        override fun getItemViewType(position: Int): Int {
+            return 1
+        }
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
+            return MainViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_main, parent, false))
+        }
+
+        override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
+            holder.updateView(list[position])
+        }
+
+        override fun getItemCount(): Int {
+            return list.size
+        }
+
+    }
+
+    inner class MainViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        private var textView: TextView = itemView.findViewById(R.id.item_text)
+
+        fun updateView(item: ItemBean) {
+            textView.text = item.name
+            itemView.setOnClickListener {
+                val intent = Intent()
+                intent.setClassName(itemView.context, item.activity)
+                itemView.context.startActivity(intent)
+            }
+        }
     }
 }
+
+data class ItemBean(val name: String, val activity: String)

@@ -1,4 +1,4 @@
-package com.wzt.media
+package com.wzt.media.renderer
 
 import android.opengl.GLES20.*
 import android.opengl.GLSurfaceView
