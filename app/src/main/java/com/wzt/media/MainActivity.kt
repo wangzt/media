@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadItemBeans():List<ItemBean> {
         val itemBeans = mutableListOf<ItemBean>()
         itemBeans.add(ItemBean("AirHockey", "com.wzt.media.activity.AirHockeyActivity"))
+        itemBeans.add(ItemBean("AirHockey2", "com.wzt.media.activity.AirHockeyActivity2"))
         return itemBeans
     }
 
