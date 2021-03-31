@@ -27,6 +27,7 @@ class MainActivity : Activity() {
         val itemBeans = mutableListOf<ItemBean>()
         itemBeans.add(ItemBean("AirHockey", "com.wzt.media.activity.AirHockeyActivity"))
         itemBeans.add(ItemBean("AirHockey2", "com.wzt.media.activity.AirHockeyActivity2"))
+        itemBeans.add(ItemBean("AirHockey3", "com.wzt.media.activity.AirHockeyActivity3"))
         return itemBeans
     }
 
