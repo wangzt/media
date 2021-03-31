@@ -1,12 +1,12 @@
 package com.wzt.media.activity
 
+import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
 import android.opengl.GLSurfaceView
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.wzt.media.renderer.AirHockeyRenderer
 
 
@@ -15,7 +15,7 @@ import com.wzt.media.renderer.AirHockeyRenderer
  * Created by wangzhitao on 2021/03/25
  *
  **/
-class AirHockeyActivity: AppCompatActivity() {
+class AirHockeyActivity: Activity() {
 
     private var rendererSet = false
     private var glSurfaceView: GLSurfaceView? = null
