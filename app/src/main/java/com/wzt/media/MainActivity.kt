@@ -28,6 +28,7 @@ class MainActivity : Activity() {
         itemBeans.add(ItemBean("AirHockey", "com.wzt.media.activity.AirHockeyActivity"))
         itemBeans.add(ItemBean("AirHockey2", "com.wzt.media.activity.AirHockeyActivity2"))
         itemBeans.add(ItemBean("AirHockey3", "com.wzt.media.activity.AirHockeyActivity3"))
+        itemBeans.add(ItemBean("AirHockey3D", "com.wzt.media.activity.AirHockeyActivity3D"))
         return itemBeans
     }
 
