@@ -52,11 +52,13 @@ private fun compileShader(type: Int, shaderCode: String): Int {
     glGetShaderiv(shaderObjectId, GL_COMPILE_STATUS, compileStatus, 0)
     if (BuildConfig.DEBUG) {
         // Print the shader info log to the Android log output.
-        Log.v(TAG, """
+        Log.v(
+            TAG, """
      Results of compiling source:
      $shaderCode
      :${glGetShaderInfoLog(shaderObjectId)}
-     """.trimIndent())
+     """.trimIndent()
+        )
     }
 
     // Verify the compile status.
@@ -102,10 +104,12 @@ fun linkProgram(vertexShaderId: Int, fragmentShaderId: Int): Int {
     glGetProgramiv(programObjectId, GL_LINK_STATUS, linkStatus, 0)
     if (BuildConfig.DEBUG) {
         // Print the program info log to the Android log output.
-        Log.v(TAG, """
+        Log.v(
+            TAG, """
      Results of linking program:
      ${glGetProgramInfoLog(programObjectId)}
-     """.trimIndent())
+     """.trimIndent()
+        )
     }
 
     // Verify the link status.
@@ -130,9 +134,32 @@ fun validateProgram(programObjectId: Int): Boolean {
     glValidateProgram(programObjectId)
     val validateStatus = IntArray(1)
     glGetProgramiv(programObjectId, GL_VALIDATE_STATUS, validateStatus, 0)
-    Log.v(TAG, """
+    Log.v(
+        TAG, """
      Results of validating program: ${validateStatus[0]}
      Log:${glGetProgramInfoLog(programObjectId)}
-     """.trimIndent())
+     """.trimIndent()
+    )
     return validateStatus[0] != 0
+}
+
+/**
+ * Helper function that compiles the shaders, links and validates the
+ * program, returning the program ID.
+ */
+fun buildProgram(
+    vertexShaderSource: String?,
+    fragmentShaderSource: String?): Int {
+    val program: Int
+
+    // Compile the shaders.
+    val vertexShader = compileVertexShader(vertexShaderSource)
+    val fragmentShader = compileFragmentShader(fragmentShaderSource)
+
+    // Link them into a shader program.
+    program = linkProgram(vertexShader, fragmentShader)
+    if (BuildConfig.DEBUG) {
+        validateProgram(program)
+    }
+    return program
 }

@@ -21,6 +21,7 @@
         <activity android:name=".activity.AirHockeyActivity2" android:screenOrientation="portrait"/>
         <activity android:name=".activity.AirHockeyActivity3" />
         <activity android:name=".activity.AirHockeyActivity3D" />
+        <activity android:name=".activity.AirHockeyActivityTexture" />
     </application>
 
 </manifest>
