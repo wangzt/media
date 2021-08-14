@@ -1,5 +1,6 @@
 package com.wzt.media
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -21,6 +23,8 @@ class MainActivity : Activity() {
         val adapter = MainAdapter(loadItemBeans())
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
+
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
     }
 
     private fun loadItemBeans():List<ItemBean> {
@@ -30,6 +34,7 @@ class MainActivity : Activity() {
         itemBeans.add(ItemBean("AirHockey3", "com.wzt.media.activity.AirHockeyActivity3"))
         itemBeans.add(ItemBean("AirHockey3D", "com.wzt.media.activity.AirHockeyActivity3D"))
         itemBeans.add(ItemBean("AirHockeyTexture", "com.wzt.media.activity.AirHockeyActivityTexture"))
+        itemBeans.add(ItemBean("Camera1", "com.wzt.media.camera.Camera1Activity"))
         return itemBeans
     }
 
