@@ -35,6 +35,7 @@ class MainActivity : Activity() {
         itemBeans.add(ItemBean("AirHockey3D", "com.wzt.media.activity.AirHockeyActivity3D"))
         itemBeans.add(ItemBean("AirHockeyTexture", "com.wzt.media.activity.AirHockeyActivityTexture"))
         itemBeans.add(ItemBean("Camera1", "com.wzt.media.camera.Camera1Activity"))
+        itemBeans.add(ItemBean("Camera2", "com.wzt.media.camera.Camera2Activity"))
         return itemBeans
     }
 
